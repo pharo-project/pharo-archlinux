@@ -4,7 +4,7 @@
 
 pkgname=pharo-vm-latest
 pkgver=3.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Up to date Pharo-VM from Continuous integration server. Pharo is a clean, innovative, open-source Smalltalk-inspired environment"
 conflicts=('pharo')
 arch=(i686 x86_64)
@@ -29,6 +29,7 @@ package() {
 	mkdir -p $pkgdir/usr/bin/
 
 	cp -fr $srcdir/* $pkgdir/usr/share/pharo-vm/
+	rm $pkgdir/usr/share/pharo-vm/*.zip
 	chmod +x $pkgdir/usr/share/pharo-vm/pharo
 
 	chgrp -R users $pkgdir/usr/share/pharo-vm/
