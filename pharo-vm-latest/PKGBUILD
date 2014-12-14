@@ -19,7 +19,7 @@ fi
 
 source=(http://files.pharo.org/sources/PharoV30.sources.zip)
 
-md5sums=('a145b0733f9d68d9ce6a76270b6b9ec8')
+md5sums=('bb0a66b8968ef7d0da97ec86331f68c8')
 
 package() {
 	cd $srcdir/
