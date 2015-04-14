@@ -3,7 +3,7 @@
 
 pkgname=pharo-launcher
 pkgver=3.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Pharo Launcher helps you manage your Pharo images"
 arch=(i686 x86_64)
 source=($pkgname-$pkgver.tar.gz)
@@ -24,7 +24,7 @@ prepare() {
 package() {
 	cd $srcdir/
 
-	wget	https://ci.inria.fr/pharo-contribution/job/PharoLauncherFinalUserImage/lastSuccessfulBuild/artifact/PharoLauncher.zip
+	wget	https://ci.inria.fr/pharo/view/Launcher/job/Launcher/PHARO=30,VERSION=stable,VM=vm,label=linux/lastSuccessfulBuild/artifact/PharoLauncher-user-stable-2015.03.20.zip
 	unzip PharoLauncher.zip
 
 	mkdir -p $pkgdir/usr/share/pharo-launcher/
