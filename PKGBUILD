@@ -5,7 +5,7 @@
 pkgname=pharo-launcher
 epoch=1
 pkgver=3.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Pharo Launcher helps you manage your Pharo images"
 arch=(x86_64)
 source=(PharoLauncher-linux-$pkgver.zip pharo.conf)
@@ -23,7 +23,7 @@ source=(
 md5sums=(
 	'aed2ea4779afde2f01733aebb6b50170'
 	'b2e30a17b522ee265fd57fe7c45592fc'
-	'ce2ea191c7b8104305adc98943df826e'
+	'c74b8fc7c1e23c60b1b2030afaead26c'
 )
 
 prepare() {
