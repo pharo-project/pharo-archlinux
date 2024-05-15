@@ -3,9 +3,12 @@
 
 
 pkgname=pharo-launcher
+# Major version of this pkgbuild
 epoch=1
-pkgver=3.0
-pkgrel=4
+# Version of Pharo Launcher
+pkgver=3.1.1
+# Revision of this pkgbuild
+pkgrel=1
 pkgdesc="Pharo Launcher helps you manage your Pharo images"
 arch=(x86_64)
 source=(PharoLauncher-linux-$pkgver.zip pharo.conf)
@@ -15,13 +18,13 @@ depends=('glibc' 'libgit2')
 makedepends=('gendesk' 'libcurl-gnutls')
 
 source=(
-	"http://files.pharo.org/pharo-launcher/$pkgver.1/PharoLauncher-linux-$pkgver.1-x64.zip"
+	"https://github.com/pharo-project/pharo-launcher/releases/download/$pkgver/PharoLauncher-linux-$pkgver-x64.zip"
 	'local://pharo.conf'
 	'local://launcher-patch.st'
 )
 
 md5sums=(
-	'aed2ea4779afde2f01733aebb6b50170'
+	'cedba3fa83d6a80418315df8c95473ad'
 	'b2e30a17b522ee265fd57fe7c45592fc'
 	'c74b8fc7c1e23c60b1b2030afaead26c'
 )
