@@ -1,7 +1,9 @@
 src/*
 pkg/*
 pharo-launcher-1*
+pharo-launcher-*
 PharoLauncher-linux-*
+icon-opaque*
 PharoDebug.log
 
 PharoLauncher.changes
