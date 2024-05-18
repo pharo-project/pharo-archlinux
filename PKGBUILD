@@ -7,7 +7,7 @@ epoch=1
 # Version of Pharo Launcher
 pkgver=3.1.1
 # Revision of this pkgbuild
-pkgrel=2
+pkgrel=3
 pkgdesc="Pharo Launcher helps you manage your Pharo images"
 arch=(x86_64)
 source=(PharoLauncher-linux-$pkgver.zip pharo.conf)
@@ -31,7 +31,9 @@ md5sums=(
 )
 
 prepare() {
+	# Icon for the launcher
 	gendesk -n -f --icon "pharo-launcher" --pkgname "$pkgname" --pkgdesc "$pkgdesc" --categories "Development" --name "Pharo Launcher"
+	# Icon for the vm
 	gendesk -n -f --icon "pharo" --pkgname "pharo" --pkgdesc "A Pharo VM executed" --categories "Development" --name "Pharo" --custom="NoDisplay=true"
 }
 
@@ -44,20 +46,22 @@ package() {
 	mkdir -p $pkgdir/usr/share/pixmaps/
 	mkdir -p $pkgdir/usr/bin
 
-
-	cp -fR $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/shared/* $pkgdir/usr/share/pharo-launcher/
-	chmod -R 777 $pkgdir/usr/share/pharo-launcher/
-
-	cp -fR $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/shared/pharo-vm/* $pkgdir/usr/share/pharo-vm/
-	mv $pkgdir/usr/share/pharo-vm/pharo $pkgdir/usr/share/pharo-vm/pharo-launcher
-	chmod -R 777 $pkgdir/usr/share/pharo-vm/
-
 	sed -i 's/ROOT=`dirname "$DIR"`/ROOT=\/usr\/share/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/pharo-launcher
 	sed -i 's/LINUX="$ROOT\/bin"/LINUX="$ROOT\/pharo"/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/pharo-launcher
 	sed -i 's/RESOURCES="$ROOT\/shared"/RESOURCES="\/usr\/share\/pharo-launcher"/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/pharo-launcher
 	sed -i 's/ICONS="$ROOT\/icons"/ICONS="$ROOT\/pixmaps"/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/pharo-launcher
 	# Rename executable of the vm for the icon
 	sed -i 's/$LINUX\/pharo/$LINUX\/pharo-launcher/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/pharo-launcher
+	sed -i 's/$BIN\/pharo/$BIN\/pharo-launcher/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/shared/pharo-vm/pharo
+	sed -i 's/$BIN\/pharo/$BIN\/pharo-launcher/' $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/shared/pharo-vm/bin/pharo
+	# Rename library of the vm for the icon
+	cp -fR $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/shared/* $pkgdir/usr/share/pharo-launcher/
+	cp -fR $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/shared/pharo-vm/* $pkgdir/usr/share/pharo-vm/
+	mv $pkgdir/usr/share/pharo-vm/pharo $pkgdir/usr/share/pharo-vm/pharo-launcher
+	mv $pkgdir/usr/share/pharo-vm/bin/pharo $pkgdir/usr/share/pharo-vm/bin/pharo-launcher
+	mv $pkgdir/usr/share/pharo-vm/lib/pharo $pkgdir/usr/share/pharo-vm/lib/pharo-launcher
+	chmod -R 777 $pkgdir/usr/share/pharo-vm/
+	chmod -R 777 $pkgdir/usr/share/pharo-launcher/
 
 	cp -f $srcdir/artifacts/PharoLauncher-linux-3.1.1-x64/pharo-launcher $pkgdir/usr/bin/pharo-launcher
 	chmod +x $pkgdir/usr/bin/pharo-launcher
